@@ -94,3 +94,5 @@ def menu():
             break
         else:
             print("Érvénytelen választás.")
+if __name__ == "__main__":
+    menu()
