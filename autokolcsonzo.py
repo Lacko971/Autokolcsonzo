@@ -59,3 +59,11 @@ class Autokolcsonzo:
 
     def berlesek_listazasa(self):
         return [str(b) for b in self.berlesek]
+kolcsonzo = Autokolcsonzo("CityRent")
+kolcsonzo.auto_hozzaadasa(Szemelyauto("ABC123", "Opel Astra", 10000, 5))
+kolcsonzo.auto_hozzaadasa(Szemelyauto("XYZ987", "Suzuki Swift", 8000, 4))
+kolcsonzo.auto_hozzaadasa(Teherauto("TRK555", "Ford Transit", 15000, 1200))
+kolcsonzo.auto_berlese("ABC123", datetime(2025, 6, 2))
+kolcsonzo.auto_berlese("XYZ987", datetime(2025, 6, 3))
+kolcsonzo.auto_berlese("TRK555", datetime(2025, 6, 4))
+kolcsonzo.auto_berlese("XYZ987", datetime(2025, 6, 5))
