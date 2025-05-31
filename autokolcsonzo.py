@@ -32,3 +32,30 @@ class Berles:
 
     def __str__(self):
         return f"{self.auto.rendszam} ({self.auto.tipus}) - {self.datum.strftime('%Y-%m-%d')}"
+class Autokolcsonzo:
+    def __init__(self, nev):
+        self.nev = nev
+        self.autok = []
+        self.berlesek = []
+
+    def auto_hozzaadasa(self, auto):
+        self.autok.append(auto)
+
+    def auto_berlese(self, rendszam, datum):
+        auto = next((a for a in self.autok if a.rendszam == rendszam), None)
+        if not auto:
+            return "Nincs ilyen rendszámú autó."
+        if any(b.auto.rendszam == rendszam and b.datum == datum for b in self.berlesek):
+            return "Az autó már foglalt ezen a napon."
+        self.berlesek.append(Berles(auto, datum))
+        return f"Bérlés sikeres, ár: {auto.berleti_dij} Ft"
+
+    def berles_lemondasa(self, rendszam, datum):
+        for berles in self.berlesek:
+            if berles.auto.rendszam == rendszam and berles.datum == datum:
+                self.berlesek.remove(berles)
+                return "Bérlés lemondva."
+        return "Nincs ilyen bérlés."
+
+    def berlesek_listazasa(self):
+        return [str(b) for b in self.berlesek]
