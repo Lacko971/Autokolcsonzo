@@ -67,3 +67,30 @@ kolcsonzo.auto_berlese("ABC123", datetime(2025, 6, 2))
 kolcsonzo.auto_berlese("XYZ987", datetime(2025, 6, 3))
 kolcsonzo.auto_berlese("TRK555", datetime(2025, 6, 4))
 kolcsonzo.auto_berlese("XYZ987", datetime(2025, 6, 5))
+def menu():
+    while True:
+        print("\n1. Autó bérlése\n2. Bérlés lemondása\n3. Bérlések listázása\n4. Kilépés")
+        valasz = input("Választás: ")
+        if valasz == "1":
+            rendszam = input("Rendszám: ")
+            datum_str = input("Dátum (ÉÉÉÉ-HH-NN): ")
+            try:
+                datum = datetime.strptime(datum_str, "%Y-%m-%d")
+                print(kolcsonzo.auto_berlese(rendszam, datum))
+            except ValueError:
+                print("Hibás dátumformátum.")
+        elif valasz == "2":
+            rendszam = input("Rendszám: ")
+            datum_str = input("Dátum (ÉÉÉÉ-HH-NN): ")
+            try:
+                datum = datetime.strptime(datum_str, "%Y-%m-%d")
+                print(kolcsonzo.berles_lemondasa(rendszam, datum))
+            except ValueError:
+                print("Hibás dátumformátum.")
+        elif valasz == "3":
+            for b in kolcsonzo.berlesek_listazasa():
+                print(b)
+        elif valasz == "4":
+            break
+        else:
+            print("Érvénytelen választás.")
